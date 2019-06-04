@@ -65,6 +65,11 @@ def generate_once(template_dir, root, files, name, if_print):
     html = template.render(ig={
         'root': '/'+root.lstrip('.*/'),
         'files': filelist
+        'generator': {
+            'name':    APP_NAME,
+            'version': APP_VERSION,
+            'url':     APP_URL
+        }
     })
 
     if if_print:
@@ -78,7 +83,7 @@ def generate_recursively(template_dir, path, name, if_print, max_depth=0):
         if max_depth != 0 and root.count(os.sep) >= max_depth:
             dirs.clear()
             continue
-        
+
         dirs.sort()
         files.sort()
 
@@ -88,7 +93,7 @@ def generate_recursively(template_dir, path, name, if_print, max_depth=0):
             print('dirs: {}'.format(dirs))
             print('files: {}'.format(files))
             print('-----------------------------------------')
-        
+
         generate_once(template_dir, root, dirs+files, name, if_print)
 
 
