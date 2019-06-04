@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Files: {{ ig.currentPath }}/{% endblock %}</title>
+    <title>{% block title %}Index of: {{ ig.root }}{% endblock %}</title>
     {% block extra %}{% endblock %}
 </head>
 <body>
 {% block head %}
-<h1>Index of {{ ig.currentPath }}/</h1>
+<h1>Index of {{ ig.root }}</h1>
 <hr>
 {% block files %}
 {% endblock %}

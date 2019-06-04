@@ -5,19 +5,16 @@ import time
 import os
 import jinja2
 import argparse
-import os.path as path
 from datetime import datetime
 
 from index_generator.models.entries import Entry
 from index_generator.models.exceptions import IndexGeneratorException
 from . import *
 
-indexIgnore = ['index.html', 'templates']
+indexIgnore = ('index.html' 'images' 'favicon.ico')
 
 
 def main():
-    global template
-    global arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--version', '-V', action='store_true', default=False,
                         help='Print version infomation and quit.')
@@ -27,7 +24,8 @@ def main():
     parser.add_argument('--name', '-n', type=str, default='index.html',
                         help='Default output filename.')
     parser.add_argument('--print', '-P', action='store_true', default=False, help='Whether to print to stdout.')
-    parser.add_argument('path', type=str, default='.', help='Path')
+    parser.add_argument('path', type=str, default='', help='Path')
+    parser.add_argument('--depth','-d', type=int, default=0, help='Set cutoff depth.')
     arguments = parser.parse_args(sys.argv[1:])
     app(arguments)
 
@@ -37,22 +35,26 @@ def app(args):
         print(APP_NAME + ' ' + APP_VERSION + ' ' + APP_URL)
         sys.exit(0)
     if args.no_recursive:
-        generate_once(args.template, args.path, args.name, args.print)
+        generate_once(args.template, args.path, os.listdir(args.path), args.name, args.print)
     else:
-        raise IndexGeneratorException(IndexGeneratorException.NOT_IMPLEMENTED)
+        generate_recursively(args.template, args.path, args.name, args.print, args.depth)
 
 
-def generate_once(template_dir, path='.', name='index.html', if_print=False):
+def generate_once(template_dir, root, files, name, if_print):
     environment = jinja2.Environment(
         loader=jinja2.PackageLoader('index_generator', template_dir),
         autoescape=jinja2.select_autoescape(['html', 'htm'])
     )
     template = environment.get_template(name)
-    entries = list(map(lambda f: Entry(f), os.listdir(path)))
-    entries.sort(key=lambda x: x.isDir, reverse=True)
-    files = []
+
+    entries = list(map(lambda f: Entry(f,root), files))
+    #entries.sort(key=lambda x: x.isDir, reverse=True)
+
+    filelist=[]
     for entry in entries:
-        files.append({
+        if entry.name in indexIgnore:
+            continue
+        filelist.append({
             'path':     entry.path,
             'name':     entry.name,
             'size':     entry.size,
@@ -61,52 +63,33 @@ def generate_once(template_dir, path='.', name='index.html', if_print=False):
             'isDir':    entry.isDir
         })
     html = template.render(ig={
-        'currentPath': '/',
-        'files': files
+        'root': '/'+root.lstrip('.*/'),
+        'files': filelist
     })
+
     if if_print:
         print(html)
     else:
-        raise IndexGeneratorException(IndexGeneratorException.NOT_IMPLEMENTED)
+        with open(root+os.path.sep+name, 'w') as f:
+            print(html, file=f)
 
-
-def generate(currentDir=''):
-    filelist=[]
-    dirlist=[]
-    for file in os.listdir():
-        if file in indexIgnore:
+def generate_recursively(template_dir, path, name, if_print, max_depth=0):
+    for root, dirs, files in os.walk(path):
+        if max_depth != 0 and root.count(os.sep) >= max_depth:
+            dirs.clear()
             continue
-        if path.isdir(file):
-            dirlist.append({
-                'name': file,
-                'modified': datetime.fromtimestamp(path.getmtime(file)).strftime('%Y-%m-%d %H:%M')
-                })
-        else:
-            filelist.append({
-                'name': file,
-                'modified': datetime.fromtimestamp(path.getmtime(file)).strftime('%Y-%m-%d %H:%M'),
-                'size': path.getsize(file)
-                })
-    
-    index = template.render(ig={
-            'currentPath': currentDir,
-            'dirs': dirlist,
-            'files': filelist
-            })
-    if arguments.print:
-        print(index)
+        
+        dirs.sort()
+        files.sort()
 
-    with open('index.html', 'w') as f:
-        print(index, file=f)
-
-    if not arguments.no_recursive and dirlist:
-        for file in dirlist:
-            if arguments.print:
-                print('------------------------------------------------')
-            os.chdir(file['name'])
-            generate(currentDir+'/'+file['name'])
-    
-    os.chdir('..')
+        if if_print:
+            print('-----------------------------------------')
+            print('Path: '+root)
+            print('dirs: {}'.format(dirs))
+            print('files: {}'.format(files))
+            print('-----------------------------------------')
+        
+        generate_once(template_dir, root, dirs+files, name, if_print)
 
 
 if __name__ == '__main__':

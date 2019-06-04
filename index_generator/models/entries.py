@@ -3,10 +3,11 @@ import mimetypes
 
 
 class Entry(object):
-    def __init__(self, path, root='/'):
+    def __init__(self, file, root):
+        path = root + os.path.sep + file
+        self.path = '/' + path.lstrip('.*/')
         self.name = os.path.basename(path)
         self.mime = mimetypes.guess_type(path)[0]
-        self.path = root + path
         self.size = os.path.getsize(path)
         self.modified = os.path.getmtime(path)
         self.isDir = os.path.isdir(path)
