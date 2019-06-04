@@ -62,7 +62,12 @@ def generate_once(template_dir, path='.', name='index.html', if_print=False):
         })
     html = template.render(ig={
         'currentPath': '/',
-        'files': files
+        'files': files,
+        'generator': {
+            'name':    APP_NAME,
+            'version': APP_VERSION,
+            'url':     APP_URL
+        }
     })
     if if_print:
         print(html)
