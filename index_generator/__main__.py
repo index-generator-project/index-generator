@@ -2,20 +2,18 @@
 # *-- coding: utf-8 --*
 import sys
 import time
-
 import os
-import os.path as path
-from datetime import datetime
-
 import jinja2
 import argparse
-import os
+import os.path as path
+from datetime import datetime
 
 from index_generator.models.entries import Entry
 from index_generator.models.exceptions import IndexGeneratorException
 from . import *
 
-indexIgnore=['index.html', 'templates']
+indexIgnore = ['index.html', 'templates']
+
 
 def main():
     global template
