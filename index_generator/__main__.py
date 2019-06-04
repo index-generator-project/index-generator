@@ -24,6 +24,7 @@ def main():
     parser.add_argument('--print', '-P', action='store_true', default=False, help='Whether to print to stdout.')
     parser.add_argument('--depth', '-d', type=int, default=0, help='Set cutoff depth.')
     parser.add_argument('--root', '-r', type=str, default='/', help='Set base root dir.')
+    parser.add_argument('--human', action='store_true', default=False, help='Make size human readable.')
     parser.add_argument('path', type=str, default='', help='Path', nargs='?')
     arguments = parser.parse_args()
     app(arguments)
@@ -39,19 +40,19 @@ def app(args):
         print('See: index-generator --help')
         sys.exit(0)
     if args.no_recursive:
-        generate_once(args.template, args.path, os.listdir(args.path), args.name, args.print, base=args.root)
+        generate_once(args.template, args.path, os.listdir(args.path), args.name, args.print, base=args.root, human=args.human)
     else:
-        generate_recursively(args.template, args.path, args.name, args.print, args.depth, base=args.root)
+        generate_recursively(args.template, args.path, args.name, args.print, args.depth, base=args.root, human=args.human)
 
 
-def generate_once(template_dir, root, files, name, if_print, base='/'):
+def generate_once(template_dir, root, files, name, if_print, base='/', human=False):
     environment = jinja2.Environment(
         loader=jinja2.PackageLoader('index_generator', template_dir),
         autoescape=jinja2.select_autoescape(['html', 'htm'])
     )
     template = environment.get_template(name)
 
-    entries = list(map(lambda f1: Entry(f1, root, base=base), files))
+    entries = list(map(lambda f1: Entry(f1, root, base=base, human=human), files))
     # entries.sort(key=lambda x: x.isDir, reverse=True)
 
     filelist = []
@@ -83,7 +84,7 @@ def generate_once(template_dir, root, files, name, if_print, base='/'):
             print(html, file=f)
 
 
-def generate_recursively(template_dir, path, name, if_print, max_depth=0, base='/'):
+def generate_recursively(template_dir, path, name, if_print, max_depth=0, base='/', human=False):
     for root, dirs, files in os.walk(path):
         if max_depth != 0 and root.count(os.sep) >= max_depth:
             dirs.clear()
@@ -99,7 +100,7 @@ def generate_recursively(template_dir, path, name, if_print, max_depth=0, base='
             print('files: {}'.format(files))
             print('-----------------------------------------')
 
-        generate_once(template_dir, root, dirs+files, name, if_print, base=base)
+        generate_once(template_dir, root, dirs+files, name, if_print, base=base, human=human)
 
 
 if __name__ == '__main__':
