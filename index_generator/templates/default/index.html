@@ -16,7 +16,7 @@
     </tr>
     {% for file in ig.files %}
     <tr>
-        <td><a href="#">{{ file.name }}</a></td>
+        <td><a href="{{ file.path }}">{{ file.name }}</a></td>
         <td>{{ file.modified }}</td>
         <td>{{ file.size }}</td>
     </tr>
