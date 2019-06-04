@@ -49,6 +49,7 @@ def generate_once(template_dir, path='.', name='index.html', if_print=False):
     )
     template = environment.get_template(name)
     entries = list(map(lambda f: Entry(f), os.listdir(path)))
+    entries.sort(key=lambda x: x.isDir, reverse=True)
     files = []
     for entry in entries:
         files.append({
@@ -56,7 +57,8 @@ def generate_once(template_dir, path='.', name='index.html', if_print=False):
             'name':     entry.name,
             'size':     entry.size,
             'modified': time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(entry.modified)),
-            'mime':     entry.mime
+            'mime':     entry.mime,
+            'isDir':    entry.isDir
         })
     html = template.render(ig={
         'currentPath': '/',

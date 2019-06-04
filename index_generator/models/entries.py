@@ -9,3 +9,4 @@ class Entry(object):
         self.path = root + path
         self.size = os.path.getsize(path)
         self.modified = os.path.getmtime(path)
+        self.isDir = os.path.isdir(path)

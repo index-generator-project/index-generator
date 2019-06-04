@@ -19,18 +19,15 @@
         <td>-</td>
         <td>-</td>
     </tr>
-    {% for dir in ig.dirs %}
-    <tr>
-        <td><a href="{{ ig.currentPath }}/{{ dir.name }}">{{ dir.name }}/</a></td>
-        <td>{{ dir.modified }}</td>
-        <td>-</td>
-    </tr>
-    {% endfor %}
     {% for file in ig.files %}
     <tr>
-        <td><a href="{{ ig.currentPath }}/{{ file.name }}">{{ file.name }}</a></td>
+        <td><a href="{{ file.name }}">{{ file.name }}</a></td>
         <td>{{ file.modified }}</td>
+        {% if file.isDir %}
+        <td>-</td>
+        {% else %}
         <td>{{ file.size }}</td>
+        {% endif %}
     </tr>
     {% endfor %}
 </table>
