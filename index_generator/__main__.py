@@ -3,6 +3,10 @@
 import sys
 import time
 
+import os
+import os.path as path
+from datetime import datetime
+
 import jinja2
 import argparse
 import os
@@ -11,8 +15,11 @@ from index_generator.models.entries import Entry
 from index_generator.models.exceptions import IndexGeneratorException
 from . import *
 
+indexIgnore=['index.html', 'templates']
 
 def main():
+    global template
+    global arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--version', '-V', action='store_true', default=False,
                         help='Print version infomation and quit.')
@@ -61,6 +68,45 @@ def generate_once(template_dir, path='.', name='index.html', if_print=False):
         print(html)
     else:
         raise IndexGeneratorException(IndexGeneratorException.NOT_IMPLEMENTED)
+
+
+def generate(currentDir=''):
+    filelist=[]
+    dirlist=[]
+    for file in os.listdir():
+        if file in indexIgnore:
+            continue
+        if path.isdir(file):
+            dirlist.append({
+                'name': file,
+                'modified': datetime.fromtimestamp(path.getmtime(file)).strftime('%Y-%m-%d %H:%M')
+                })
+        else:
+            filelist.append({
+                'name': file,
+                'modified': datetime.fromtimestamp(path.getmtime(file)).strftime('%Y-%m-%d %H:%M'),
+                'size': path.getsize(file)
+                })
+    
+    index = template.render(ig={
+            'currentPath': currentDir,
+            'dirs': dirlist,
+            'files': filelist
+            })
+    if arguments.print:
+        print(index)
+
+    with open('index.html', 'w') as f:
+        print(index, file=f)
+
+    if not arguments.no_recursive and dirlist:
+        for file in dirlist:
+            if arguments.print:
+                print('------------------------------------------------')
+            os.chdir(file['name'])
+            generate(currentDir+'/'+file['name'])
+    
+    os.chdir('..')
 
 
 if __name__ == '__main__':
