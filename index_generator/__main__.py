@@ -5,13 +5,11 @@ import time
 import os
 import jinja2
 import argparse
-from datetime import datetime
 
 from index_generator.models.entries import Entry
-from index_generator.models.exceptions import IndexGeneratorException
 from . import *
 
-indexIgnore = ('index.html' 'images' 'favicon.ico')
+indexIgnore = ('index.html', 'images', 'favicon.ico')
 
 
 def main():
@@ -24,15 +22,20 @@ def main():
     parser.add_argument('--name', '-n', type=str, default='index.html',
                         help='Default output filename.')
     parser.add_argument('--print', '-P', action='store_true', default=False, help='Whether to print to stdout.')
-    parser.add_argument('path', type=str, default='', help='Path')
-    parser.add_argument('--depth','-d', type=int, default=0, help='Set cutoff depth.')
-    arguments = parser.parse_args(sys.argv[1:])
+    parser.add_argument('--depth', '-d', type=int, default=0, help='Set cutoff depth.')
+    parser.add_argument('path', type=str, default='', help='Path', nargs='?')
+    arguments = parser.parse_args()
     app(arguments)
 
 
 def app(args):
     if args.version:
         print(APP_NAME + ' ' + APP_VERSION + ' ' + APP_URL)
+        sys.exit(0)
+    if not args.path:
+        print(APP_NAME + ' ' + APP_VERSION + ' ' + APP_URL)
+        print('Usage: index-generator [OPTIONS] PATH.')
+        print('See: index-generator --help')
         sys.exit(0)
     if args.no_recursive:
         generate_once(args.template, args.path, os.listdir(args.path), args.name, args.print)
@@ -47,10 +50,10 @@ def generate_once(template_dir, root, files, name, if_print):
     )
     template = environment.get_template(name)
 
-    entries = list(map(lambda f: Entry(f,root), files))
-    #entries.sort(key=lambda x: x.isDir, reverse=True)
+    entries = list(map(lambda f1: Entry(f1, root), files))
+    # entries.sort(key=lambda x: x.isDir, reverse=True)
 
-    filelist=[]
+    filelist = []
     for entry in entries:
         if entry.name in indexIgnore:
             continue
@@ -77,6 +80,7 @@ def generate_once(template_dir, root, files, name, if_print):
     else:
         with open(root+os.path.sep+name, 'w') as f:
             print(html, file=f)
+
 
 def generate_recursively(template_dir, path, name, if_print, max_depth=0):
     for root, dirs, files in os.walk(path):
