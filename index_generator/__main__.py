@@ -64,7 +64,7 @@ def generate_once(template_dir, root, files, name, if_print):
         })
     html = template.render(ig={
         'root': '/'+root.lstrip('.*/'),
-        'files': filelist
+        'files': filelist,
         'generator': {
             'name':    APP_NAME,
             'version': APP_VERSION,
