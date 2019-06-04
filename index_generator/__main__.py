@@ -40,7 +40,8 @@ def app(args):
         print('See: index-generator --help')
         sys.exit(0)
     if args.no_recursive:
-        generate_once(args.template, args.path, os.listdir(args.path), args.name, args.print, base=args.root, human=args.human)
+        os.chdir(args.path)
+        generate_once(args.template, '.', os.listdir('.'), args.name, args.print, base=args.root, human=args.human)
     else:
         generate_recursively(args.template, args.path, args.name, args.print, args.depth, base=args.root, human=args.human)
 
@@ -85,7 +86,8 @@ def generate_once(template_dir, root, files, name, if_print, base='/', human=Fal
 
 
 def generate_recursively(template_dir, path, name, if_print, max_depth=0, base='/', human=False):
-    for root, dirs, files in os.walk(path):
+    os.chdir(path)
+    for root, dirs, files in os.walk('.'):
         if max_depth != 0 and root.count(os.sep) >= max_depth:
             dirs.clear()
             continue
