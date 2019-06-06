@@ -4,7 +4,7 @@ import mimetypes
 def sizeof_fmt(num, suffix='B'):
     for unit in ['','Ki','Mi','Gi','Ti','Pi','Ei','Zi']:
         if abs(num) < 1024.0:
-            if suffix == 'B':
+            if unit == '':
                 return '%3.0f %s%s' % (num, unit, suffix)
             else:
                 return '%3.1f %s%s' % (num, unit, suffix)
