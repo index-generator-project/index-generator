@@ -16,8 +16,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--version', '-V', action='store_true', default=False,
                         help='Print version infomation and quit.')
-    parser.add_argument('--template', '-t', type=str, default='templates/default',
-                        help='Select template to generate html.')
+    parser.add_argument('--theme', '-t', type=str, default='default', choices=['default'],
+                        help='Select builtin theme to generate html.')
+    parser.add_argument('--template', '-T', type=str, default='', help='Custom template to generate html.')
     parser.add_argument('--no-recursive', action='store_true', default=False, help='Do not generate recursively.')
     parser.add_argument('--name', '-n', type=str, default='index.html',
                         help='Default output filename.')
@@ -41,16 +42,24 @@ def app(args):
         sys.exit(0)
     if args.no_recursive:
         os.chdir(args.path)
-        generate_once(args.template, '.', os.listdir('.'), args.name, args.print, base=args.root, human=args.human)
+        generate_once(args.theme, '.', os.listdir('.'), args.name, args.print, base=args.root, human=args.human,
+                      template=args.template)
     else:
-        generate_recursively(args.template, args.path, args.name, args.print, args.depth, base=args.root, human=args.human)
+        generate_recursively(args.theme, args.path, args.name, args.print, args.depth, base=args.root, human=args.human,
+                             template=args.template)
 
 
-def generate_once(template_dir, root, files, name, if_print, base='/', human=False):
-    environment = jinja2.Environment(
-        loader=jinja2.PackageLoader('index_generator', template_dir),
-        autoescape=jinja2.select_autoescape(['html', 'htm'])
-    )
+def generate_once(theme, root, files, name, if_print, base='/', human=False, template=''):
+    if not template:
+        environment = jinja2.Environment(
+            loader=jinja2.PackageLoader('index_generator', 'templates/' + theme),
+            autoescape=jinja2.select_autoescape(['html', 'htm'])
+        )
+    else:
+        environment = jinja2.Environment(
+            loader=jinja2.FileSystemLoader(template),
+            autoescape=jinja2.select_autoescape(['html', 'htm'])
+        )
     template = environment.get_template(name)
 
     entries = list(map(lambda f1: Entry(f1, root, base=base, human=human), files))
@@ -61,20 +70,20 @@ def generate_once(template_dir, root, files, name, if_print, base='/', human=Fal
         if entry.name in indexIgnore:
             continue
         filelist.append({
-            'path':     entry.path,
-            'name':     entry.name,
-            'size':     entry.size,
+            'path': entry.path,
+            'name': entry.name,
+            'size': entry.size,
             'modified': time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(entry.modified)),
-            'mime':     entry.mime,
-            'isDir':    entry.isDir
+            'mime': entry.mime,
+            'isDir': entry.isDir
         })
     html = template.render(ig={
         'root': base + root.lstrip('.*/'),
         'files': filelist,
         'generator': {
-            'name':    APP_NAME,
+            'name': APP_NAME,
             'version': APP_VERSION,
-            'url':     APP_URL
+            'url': APP_URL
         }
     })
 
@@ -85,7 +94,7 @@ def generate_once(template_dir, root, files, name, if_print, base='/', human=Fal
             print(html, file=f)
 
 
-def generate_recursively(template_dir, path, name, if_print, max_depth=0, base='/', human=False):
+def generate_recursively(theme, path, name, if_print, max_depth=0, base='/', human=False, template=''):
     os.chdir(path)
     for root, dirs, files in os.walk('.'):
         if max_depth != 0 and root.count(os.sep) >= max_depth:
@@ -97,12 +106,12 @@ def generate_recursively(template_dir, path, name, if_print, max_depth=0, base='
 
         if if_print:
             print('-----------------------------------------')
-            print('Path: '+root)
+            print('Path: ' + root)
             print('dirs: {}'.format(dirs))
             print('files: {}'.format(files))
             print('-----------------------------------------')
 
-        generate_once(template_dir, root, dirs+files, name, if_print, base=base, human=human)
+        generate_once(theme, root, dirs + files, name, if_print, base=base, human=human)
 
 
 if __name__ == '__main__':
