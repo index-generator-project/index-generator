@@ -3,3 +3,6 @@
 __pycache__
 /*.html
 /build
+/dist
+*.egg-info
+/.eggs
