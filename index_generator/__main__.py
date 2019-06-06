@@ -43,10 +43,10 @@ def app(args):
     if args.no_recursive:
         os.chdir(args.path)
         generate_once(args.theme, '.', os.listdir('.'), args.name, args.print, base=args.root, human=args.human,
-                      template=args.template)
+                      template=os.path.abspath(args.template))
     else:
         generate_recursively(args.theme, args.path, args.name, args.print, args.depth, base=args.root, human=args.human,
-                             template=args.template)
+                             template=os.path.abspath(args.template))
 
 
 def generate_once(theme, root, files, name, if_print, base='/', human=False, template=''):
