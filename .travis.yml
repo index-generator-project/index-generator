@@ -1,0 +1,22 @@
+dist: xenial
+language: python
+python:
+  - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.8-dev"
+  - "nightly"
+  - "pypy3.5"
+install:
+  - pip install -r requirements.txt
+script:
+  - python setup.py build
+deploy:
+  provider: pypi
+  user: $PYPI_USER
+  password: $PYPI_PASS
+  distributions: "sdist bdist_wheel"
+  skip_existing: true
+  on:
+    tags: true
+    branch: master
