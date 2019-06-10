@@ -27,6 +27,7 @@ setup(
     long_description_content_type="text/markdown",
     keywords=['index', 'listing', 'directory'],
     install_requires=requirements,
+    tests_require=['pytest'],
     entry_points={
         'console_scripts': [
             'index-generator=index_generator.__main__:main'
