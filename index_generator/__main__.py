@@ -6,7 +6,9 @@ import os
 import jinja2
 import argparse
 
+from jinja2.exceptions import TemplateNotFound
 from index_generator.models.entries import Entry
+from index_generator.models.exceptions import IndexGeneratorTemplateNotFound
 from . import *
 
 indexIgnore = ('index.html', 'images', 'favicon.ico')
@@ -29,9 +31,14 @@ def main():
         parser.add_argument('--human', action='store_true', default=False, help='Make size human readable.')
         parser.add_argument('path', type=str, default='', help='Path', nargs='?')
         arguments = parser.parse_args()
-        app(arguments)
-    except Exception as e:
-        print(e)
+        try:
+            app(arguments)
+        except TemplateNotFound as e:
+            raise IndexGeneratorTemplateNotFound(str(e))
+    except BaseException as e:
+        print('[Exception] ' + e.__class__.__name__ + ': ' + str(e))
+        if hasattr(e, 'hint'):
+            print(e.hint)
 
 
 def app(args):
