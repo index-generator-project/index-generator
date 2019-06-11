@@ -36,9 +36,10 @@ def main():
         except TemplateNotFound as e:
             raise IndexGeneratorTemplateNotFound(str(e))
     except BaseException as e:
-        print('[Exception] ' + e.__class__.__name__ + ': ' + str(e))
-        if hasattr(e, 'hint'):
-            print(e.hint)
+        if e.__class__.__name__ != 'SystemExit':
+            print('[Exception] ' + e.__class__.__name__ + ': ' + str(e))
+            if hasattr(e, 'hint'):
+                print(e.hint)
 
 
 def app(args):
