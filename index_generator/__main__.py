@@ -13,22 +13,25 @@ indexIgnore = ('index.html', 'images', 'favicon.ico')
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--version', '-V', action='store_true', default=False,
-                        help='Print version infomation and quit.')
-    parser.add_argument('--theme', '-t', type=str, default='default', choices=['default'],
-                        help='Select builtin theme to generate html.')
-    parser.add_argument('--template', '-T', type=str, default='', help='Custom template to generate html.')
-    parser.add_argument('--no-recursive', action='store_true', default=False, help='Do not generate recursively.')
-    parser.add_argument('--name', '-n', type=str, default='index.html',
-                        help='Default output filename.')
-    parser.add_argument('--print', '-P', action='store_true', default=False, help='Whether to print to stdout.')
-    parser.add_argument('--depth', '-d', type=int, default=0, help='Set cutoff depth.')
-    parser.add_argument('--root', '-r', type=str, default='/', help='Set base root dir.')
-    parser.add_argument('--human', action='store_true', default=False, help='Make size human readable.')
-    parser.add_argument('path', type=str, default='', help='Path', nargs='?')
-    arguments = parser.parse_args()
-    app(arguments)
+    try:
+        parser = argparse.ArgumentParser()
+        parser.add_argument('--version', '-V', action='store_true', default=False,
+                            help='Print version infomation and quit.')
+        parser.add_argument('--theme', '-t', type=str, default='default', choices=['default'],
+                            help='Select builtin theme to generate html.')
+        parser.add_argument('--template', '-T', type=str, default='', help='Custom template to generate html.')
+        parser.add_argument('--no-recursive', action='store_true', default=False, help='Do not generate recursively.')
+        parser.add_argument('--name', '-n', type=str, default='index.html',
+                            help='Default output filename.')
+        parser.add_argument('--print', '-P', action='store_true', default=False, help='Whether to print to stdout.')
+        parser.add_argument('--depth', '-d', type=int, default=0, help='Set cutoff depth.')
+        parser.add_argument('--root', '-r', type=str, default='/', help='Set base root dir.')
+        parser.add_argument('--human', action='store_true', default=False, help='Make size human readable.')
+        parser.add_argument('path', type=str, default='', help='Path', nargs='?')
+        arguments = parser.parse_args()
+        app(arguments)
+    except Exception as e:
+        print(e)
 
 
 def app(args):
@@ -115,7 +118,4 @@ def generate_recursively(theme, path, name, if_print, max_depth=0, base='/', hum
 
 
 if __name__ == '__main__':
-    try:
-        main()
-    except Exception as e:
-        print(e)
+    main()
