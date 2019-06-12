@@ -19,7 +19,7 @@ def main():
         parser = argparse.ArgumentParser()
         parser.add_argument('--version', '-V', action='store_true', default=False,
                             help='Print version infomation and quit.')
-        parser.add_argument('--theme', '-t', type=str, default='default', choices=['default'],
+        parser.add_argument('--theme', '-t', type=str, default='default', choices=['default', 'default-dark'],
                             help='Select builtin theme to generate html.')
         parser.add_argument('--template', '-T', type=str, default='', help='Custom template to generate html.')
         parser.add_argument('--no-recursive', action='store_true', default=False, help='Do not generate recursively.')
