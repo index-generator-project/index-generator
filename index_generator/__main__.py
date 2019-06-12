@@ -122,7 +122,7 @@ def generate_recursively(theme, path, name, if_print, max_depth=0, base='/', hum
             print('files: {}'.format(files))
             print('-----------------------------------------')
 
-        generate_once(theme, root, dirs + files, name, if_print, base=base, human=human)
+        generate_once(theme, root, dirs + files, name, if_print, base=base, human=human, template=template)
 
 
 if __name__ == '__main__':
