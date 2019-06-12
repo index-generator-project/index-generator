@@ -31,6 +31,7 @@ deploy:
       secure: oWIFX7Y7lqXRcp0A9hTuhBhoQFnaYG2Iqhwm6pOpnqi6glaA5oOphdUR9MP1VX/4zKLvX+ZNIz+bIg3D1ou+WjvVCt2LJQi9+6KINSEX2EP/fFE68EcvfRT3RImrcsXcmYCeIGW4GfxMgzdR3IoJzefhvWwAB0UIfDboRg1vJAIbxzIZy3SXaft9HbKxJD1Wyc5DKUv/mNeJ78FAsnePPnbt7z8jq9jMgB3e8jmc5kfbMnvzW/eYNkslCXtu7RwuEswFwDr3UMbC1KXKEtuLw4DF+5xOA/7IgzCxtHeJ5kX95Id9dqrPSSqEljq81rJD+dTM1r0m7faDgp39Zzw59KIkM2gDBIOk+0kJXi8Qrel+Ni/6XBglA9NrfRVyrminVh2Q+De4OFXnrD4rIneCEsPDwqGGNW0X/w+1FRzkicJHrRZZAddMmxs7jP9izdeMbWRKshuXN2i/sad/78etQBMyvfvn+GyvxQOiKk/GSP7Yl5dWb0S55JsK4yNQFP4f/aAZhASAPDyqRj3TTUJWLgFetJSw3jRmBfA3GnK6yngRBOhyh+5henaSqTCJaVO4py2vRBJuoVHDPYJ9aOp7DKVG4sa5H5k6w9m7fPM9lhkg1BbIFEYQqxktIc15GmCNCiEFK5rlZSa6Yh74mryCQjtOyfPgYnfbmVycoI5ZZqk=
     file_glob: true
     file: "dist/*.whl"
+    skip_cleanup: true
     on:
       tags: true
       branch: master
