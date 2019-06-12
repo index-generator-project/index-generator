@@ -57,7 +57,7 @@ def app(args):
                       template=os.path.abspath(args.template) if args.template else '')
     else:
         generate_recursively(args.theme, args.path, args.name, args.print, args.depth, base=args.root, human=args.human,
-                             template=os.path.abspath(args.template))
+                             template=os.path.abspath(args.template) if args.template else '')
 
 
 def generate_once(theme, root, files, name, if_print, base='/', human=False, template=''):
