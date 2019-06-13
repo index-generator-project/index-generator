@@ -1,22 +1,38 @@
-dist: xenial
 language: python
-python:
-  - "3.5"
-  - "3.6"
-  - "3.7"
-  - "3.8-dev"
-  - "nightly"
-  - "pypy3.5"
+matrix:
+  allow_failures:
+    - os: osx
+    - os: windows
+  include:
+    - name: "Python on Linux"
+      dist: xenial
+      python:
+        - "3.5"
+        - "3.6"
+        - "3.7"
+        - "3.8-dev"
+        - "nightly"
+        - "pypy3.5"
+    - name: "Python 3.7 on Windows"
+      os: windows
+      language: shell
+      before_install: choco install python
+      env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
+    - name: "Python 3.7 on macOS"
+      os: osx
+      osx_image: xcode10.2
+      language: shell
 cache:
   directories:
     - $HOME/.cache/pip
     - .pytest_cache
 install:
-  - pip install -r requirements.txt
+  - pip3 install --upgrade pip
+  - pip3 install -r requirements.txt
 script:
   - pytest -v
 before_deploy:
-  - python setup.py bdist_wheel
+  - python3 setup.py bdist_wheel || python setup.py bdist_wheel
 deploy:
   - provider: pypi
     user: $PYPI_USER
