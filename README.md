@@ -3,6 +3,7 @@
 Yet another python index generator
 
 [![Travis](https://img.shields.io/travis/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://travis-ci.org/BruceZhang1993/index-generator)
+[![GitHub top language](https://img.shields.io/github/languages/top/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://github.com/BruceZhang1993/index-generator)
 [![Requires.io](https://img.shields.io/requires/github/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://requires.io/github/BruceZhang1993/index-generator/requirements/?branch=master)
 
 ## Install
