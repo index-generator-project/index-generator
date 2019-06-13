@@ -3,16 +3,26 @@ matrix:
   allow_failures:
     - os: osx
     - os: windows
+    - python: "pypy3.5"
   include:
-    - name: "Python on Linux"
+    - name: "Python 3.5 on Linux"
       dist: xenial
-      python:
-        - "3.5"
-        - "3.6"
-        - "3.7"
-        - "3.8-dev"
-        - "nightly"
-        - "pypy3.5"
+      python: "3.5"
+    - name: "Python 3.6 on Linux"
+      dist: xenial
+      python: "3.6"
+    - name: "Python 3.7 on Linux"
+      dist: xenial
+      python: "3.7"
+    - name: "Python 3.8-dev on Linux"
+      dist: xenial
+      python: "3.8-dev"
+    - name: "Python nightly on Linux"
+      dist: xenial
+      python: "nightly"
+    - name: "Python pypy3.5 on Linux"
+      dist: xenial
+      python: "pypy3.5"
     - name: "Python 3.7 on Windows"
       os: windows
       language: shell
@@ -27,6 +37,7 @@ cache:
     - $HOME/.cache/pip
     - .pytest_cache
 install:
+  - pip3 install pytest
   - pip3 install --upgrade pip
   - pip3 install -r requirements.txt
 script:
