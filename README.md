@@ -5,6 +5,8 @@ Yet another python index generator
 [![Travis](https://img.shields.io/travis/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://travis-ci.org/BruceZhang1993/index-generator)
 [![GitHub top language](https://img.shields.io/github/languages/top/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://github.com/BruceZhang1993/index-generator)
 [![Requires.io](https://img.shields.io/requires/github/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://requires.io/github/BruceZhang1993/index-generator/requirements/?branch=master)
+[![GitHub](https://img.shields.io/github/license/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://github.com/BruceZhang1993/index-generator/blob/master/LICENSE)
+![Codacy grade](https://img.shields.io/codacy/grade/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)
 
 ## Install
 

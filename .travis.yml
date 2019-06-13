@@ -38,10 +38,13 @@ cache:
     - .pytest_cache
 install:
   - pip3 install pytest
+  - pip3 install pytest-cov
+  - pip3 install codacy-coverage
   - pip3 install --upgrade pip
   - pip3 install -r requirements.txt
 script:
-  - pytest -v
+  - pytest -v --cov --cov-report xml
+  - python-codacy-coverage
 before_deploy:
   - python3 setup.py bdist_wheel || python setup.py bdist_wheel
 deploy:
