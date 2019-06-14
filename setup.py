@@ -18,7 +18,7 @@ setup(
         'index_generator': ['templates/*/*']
     },
     include_package_data=True,
-    url='https://github.com/BruceZhang1993',
+    url=APP_URL,
     license='MIT',
     author='Bruce Zhang, Edward P',
     author_email='',

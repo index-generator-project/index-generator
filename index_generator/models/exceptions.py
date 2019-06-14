@@ -6,4 +6,4 @@ class IndexGeneratorBaseException(BaseException):
 
 class IndexGeneratorTemplateNotFound(IndexGeneratorBaseException):
     def __init__(self, message):
-        return super().__init__(message, hint='Template folder does not exists or template file is not found.')
+        super().__init__(message, hint='Template folder does not exists or template file is not found.')

@@ -12,7 +12,7 @@ def test_entry():
     entry = Entry('CODE_OF_CONDUCT.md', '.', base='/', human=False)
     assert entry.path == '/CODE_OF_CONDUCT.md'
     # assert entry.mime == 'text/markdown'
-    assert type(entry.modified) is float
-    assert type(entry.size) is int
+    assert isinstance(entry.modified, float) is True
+    assert isinstance(entry.size, int) is True
     assert entry.isDir is False
     assert entry.name == 'CODE_OF_CONDUCT.md'

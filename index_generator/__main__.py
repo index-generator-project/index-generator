@@ -9,7 +9,7 @@ import argparse
 from jinja2.exceptions import TemplateNotFound
 from index_generator.models.entries import Entry
 from index_generator.models.exceptions import IndexGeneratorTemplateNotFound
-from . import *
+from . import APP_NAME, APP_URL, APP_VERSION
 
 indexIgnore = ('index.html', 'images', 'favicon.ico')
 
