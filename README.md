@@ -7,6 +7,7 @@ Yet another python index generator
 [![Requires.io](https://img.shields.io/requires/github/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://requires.io/github/BruceZhang1993/index-generator/requirements/?branch=master)
 [![GitHub](https://img.shields.io/github/license/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://github.com/BruceZhang1993/index-generator/blob/master/LICENSE)
 ![Codacy grade](https://img.shields.io/codacy/grade/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)
+![Codacy coverage](https://img.shields.io/codacy/coverage/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)
 
 ## Install
 
@@ -17,9 +18,12 @@ Yet another python index generator
 ```bash
 pip install index-generator
 ```
+
 ### GitHub release
 
 [![GitHub release](https://img.shields.io/github/release/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://github.com/BruceZhang1993/index-generator/releases)
+
+You can just download wheel(.whl) file, and install using `pip install`.
 
 ### Distributions
 
