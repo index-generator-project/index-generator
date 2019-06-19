@@ -9,8 +9,8 @@ def test_sizeof_fmt():
 
 
 def test_entry():
-    entry = Entry('CODE_OF_CONDUCT.md', '.', base='/', human=False)
-    assert entry.path == '/CODE_OF_CONDUCT.md'
+    entry = Entry('CODE_OF_CONDUCT.md', '.', base=os.path.sep, human=False)
+    assert entry.path == os.path.sep + 'CODE_OF_CONDUCT.md'
     # assert entry.mime == 'text/markdown'
     assert isinstance(entry.modified, float) is True
     assert isinstance(entry.size, int) is True

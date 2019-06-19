@@ -27,7 +27,7 @@ def main():
                             help='Default output filename.')
         parser.add_argument('--print', '-P', action='store_true', default=False, help='Whether to print to stdout.')
         parser.add_argument('--depth', '-d', type=int, default=0, help='Set cutoff depth.')
-        parser.add_argument('--root', '-r', type=str, default='/', help='Set base root dir.')
+        parser.add_argument('--root', '-r', type=str, default=os.path.sep, help='Set base root dir.')
         parser.add_argument('--human', action='store_true', default=False, help='Make size human readable.')
         parser.add_argument('path', type=str, default='', help='Path', nargs='?')
         arguments = parser.parse_args()
@@ -60,7 +60,7 @@ def app(args):
                              template=os.path.abspath(args.template) if args.template else '')
 
 
-def generate_once(theme, root, files, name, if_print, base='/', human=False, template=''):
+def generate_once(theme, root, files, name, if_print, base=os.path.sep, human=False, template=''):
     if not template:
         environment = jinja2.Environment(
             loader=jinja2.PackageLoader('index_generator', 'templates/' + theme),
@@ -89,7 +89,7 @@ def generate_once(theme, root, files, name, if_print, base='/', human=False, tem
             'isDir': entry.isDir
         })
     html = template.render(ig={
-        'root': base + root.lstrip('.*/'),
+        'root': base + root.lstrip('.*' + os.path.sep),
         'files': filelist,
         'generator': {
             'name': APP_NAME,
@@ -105,7 +105,7 @@ def generate_once(theme, root, files, name, if_print, base='/', human=False, tem
             print(html, file=f)
 
 
-def generate_recursively(theme, path, name, if_print, max_depth=0, base='/', human=False, template=''):
+def generate_recursively(theme, path, name, if_print, max_depth=0, base=os.path.sep, human=False, template=''):
     os.chdir(path)
     for root, dirs, files in os.walk('.'):
         if max_depth != 0 and root.count(os.sep) >= max_depth:
