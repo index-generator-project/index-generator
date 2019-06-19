@@ -1,3 +1,4 @@
+import os
 from index_generator.models.entries import sizeof_fmt, Entry
 
 
