@@ -1,11 +1,11 @@
 from setuptools import setup
-from index_generator import APP_NAME, APP_URL, APP_VERSION, PACKAGE_NAME
+from index_generator import APP_URL, APP_VERSION, PACKAGE_NAME
 
 with open("README.md", "r") as fh:
-    long_description = fh.read()
+    LONG_DESC = fh.read()
 
 with open('requirements.txt') as f:
-    requirements = [l for l in f.read().splitlines() if l]
+    REQUIREMENTS = [l for l in f.read().splitlines() if l]
 
 setup(
     name=PACKAGE_NAME,
@@ -23,10 +23,10 @@ setup(
     author='Bruce Zhang, Edward P',
     author_email='',
     description='Yet another index generator.',
-    long_description=long_description,
+    long_description=LONG_DESC,
     long_description_content_type="text/markdown",
     keywords=['index', 'listing', 'directory'],
-    install_requires=requirements,
+    install_requires=REQUIREMENTS,
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
