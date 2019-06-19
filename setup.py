@@ -32,6 +32,7 @@ setup(
     python_requires='>=3.5',
     install_requires=REQUIREMENTS,
     tests_require=TEST_REQUIREMENTS,
+    setup_requires=["pytest-runner"],
     entry_points={
         'console_scripts': [
             'index-generator=index_generator.__main__:main'
