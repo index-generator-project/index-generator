@@ -12,3 +12,10 @@ def test_app_version(capfd):
     main()
     out, _ = capfd.readouterr()
     assert out == APP_NAME + ' ' + APP_VERSION + ' ' + APP_URL + "\n"
+
+
+def test_app_missing_argument(capfd):
+    sys.argv = ['index_generator']
+    main()
+    out, _ = capfd.readouterr()
+    assert out == APP_NAME + ' ' + APP_VERSION + ' ' + APP_URL + "\nUsage: index-generator [OPTIONS] PATH.\nSee: index-generator --help\n"
