@@ -37,7 +37,7 @@ cache:
     - $HOME/.cache/pip
     - .pytest_cache
 install:
-  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then python3 -m pip install --upgrade pip ; fi
+  - if [ "$TRAVIS_OS_NAME" = "windows" ]; then python -m pip install --upgrade pip ; fi
   - if [ "$TRAVIS_OS_NAME" != "windows" ]; then pip3 install --upgrade pip ; fi
   - pip3 install pytest
   - pip3 install pytest-cov
