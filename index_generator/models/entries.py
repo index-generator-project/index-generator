@@ -14,9 +14,9 @@ def sizeof_fmt(num, suffix='B'):
 
 
 class Entry(object):
-    def __init__(self, file, root, base='/', human=False):
+    def __init__(self, file, root, base=os.path.sep, human=False):
         path = root + os.path.sep + file
-        self.path = base + path.lstrip('.*/')
+        self.path = base + path.lstrip('.*' + os.path.sep)
         self.name = os.path.basename(path)
         self.mime = mimetypes.guess_type(path)[0]
         if human:
