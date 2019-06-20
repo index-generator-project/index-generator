@@ -1,6 +1,6 @@
 import sys
 from index_generator.__main__ import main
-from index_generator import *
+from index_generator import APP_NAME, APP_VERSION, APP_URL
 
 
 def test_app_version(capfd):
