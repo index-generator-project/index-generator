@@ -6,31 +6,31 @@ matrix:
     - python: "pypy3.5"
   include:
     - name: "Python 3.5 on Linux"
-      stage: "Linux Build"
+      stage: "Build"
       dist: xenial
       python: "3.5"
     - name: "Python 3.6 on Linux"
-      stage: "Linux Build"
+      stage: "Build"
       dist: xenial
       python: "3.6"
     - name: "Python 3.7 on Linux"
-      stage: "Linux Build"
+      stage: "Build"
       dist: xenial
       python: "3.7"
     - name: "Python 3.8-dev on Linux"
-      stage: "Linux Build"
+      stage: "Build"
       dist: xenial
       python: "3.8-dev"
     - name: "Python nightly on Linux"
-      stage: "Linux Build"
+      stage: "Build"
       dist: xenial
       python: "nightly"
     - name: "Python pypy3.5 on Linux"
-      stage: "Linux Build"
+      stage: "Build"
       dist: xenial
       python: "pypy3.5"
     - name: "Python 3.7 on Windows"
-      stage: "Windows Build"
+      stage: "Build"
       os: windows
       language: shell
       before_install: choco install python
@@ -39,7 +39,7 @@ matrix:
         directories:
           - $HOME/AppData/Local/Temp/chocolatey
     - name: "Python 3.7 on macOS"
-      stage: "macOS Build"
+      stage: "Build"
       os: osx
       osx_image: xcode10.2
       language: shell
