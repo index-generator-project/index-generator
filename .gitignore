@@ -8,3 +8,7 @@ __pycache__
 /.eggs
 /.pytest_cache
 coverage.xml
+/Pipfile
+/Pipfile.lock
+/.vscode
+/.coverage
