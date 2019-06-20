@@ -45,6 +45,7 @@ matrix:
       language: shell
     - name: "Python 3.7 on Linux"
       stage: "Deploy"
+      if: tag IS present
       dist: xenial
       python: "3.7"
       before_deploy:
