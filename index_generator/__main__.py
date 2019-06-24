@@ -31,10 +31,7 @@ def main():
         parser.add_argument('--human', action='store_true', default=False, help='Make size human readable.')
         parser.add_argument('path', type=str, default='', help='Path', nargs='?')
         arguments = parser.parse_args()
-        try:
-            app(arguments)
-        except TemplateNotFound as e:
-            raise IndexGeneratorTemplateNotFound(str(e))
+        app(arguments)
     except BaseException as e:
         if e.__class__.__name__ != 'SystemExit':
             print('[Exception] ' + e.__class__.__name__ + ': ' + str(e))
@@ -53,13 +50,16 @@ def app(args):
         sys.exit(0)
     if not os.path.exists(args.path):
         raise IndexGeneratorPathNotExists('Path does not exists')
-    if args.no_recursive:
-        os.chdir(args.path)
-        generate_once(args.theme, '.', os.listdir('.'), args.name, args.print, base=args.root, human=args.human,
-                      template=os.path.abspath(args.template) if args.template else '')
-    else:
-        generate_recursively(args.theme, args.path, args.name, args.print, args.depth, base=args.root, human=args.human,
-                             template=os.path.abspath(args.template) if args.template else '')
+    try:
+        if args.no_recursive:
+            os.chdir(args.path)
+            generate_once(args.theme, '.', os.listdir('.'), args.name, args.print, base=args.root, human=args.human,
+                          template=os.path.abspath(args.template) if args.template else '')
+        else:
+            generate_recursively(args.theme, args.path, args.name, args.print, args.depth, base=args.root, human=args.human,
+                                 template=os.path.abspath(args.template) if args.template else '')
+    except TemplateNotFound as e:
+        raise IndexGeneratorTemplateNotFound(str(e))
 
 
 def generate_once(theme, root, files, name, if_print, base=os.path.sep, human=False, template=''):
