@@ -22,11 +22,11 @@ def test_app_missing_argument(capfd):
 
 
 def test_app_template_not_found(capfd):
-    sys.argv = ['index_generator', '--template', '/tmp/not_existed', '/tmp']
+    sys.argv = ['index_generator', '--template', '/tmp/not_existed', '.']
     main()
     out, _ = capfd.readouterr()
     assert 'IndexGeneratorTemplateNotFound' in out
-    sys.argv = ['index_generator', '-T', '/tmp/not_existed', '/tmp']
+    sys.argv = ['index_generator', '-T', '/tmp/not_existed', '.']
     main()
     out, _ = capfd.readouterr()
     assert 'IndexGeneratorTemplateNotFound' in out
