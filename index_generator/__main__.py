@@ -8,7 +8,7 @@ import argparse
 
 from jinja2.exceptions import TemplateNotFound
 from index_generator.models.entries import Entry
-from index_generator.models.exceptions import IndexGeneratorTemplateNotFound
+from index_generator.models.exceptions import IndexGeneratorTemplateNotFound, IndexGeneratorPathNotExists
 from . import APP_NAME, APP_URL, APP_VERSION
 
 indexIgnore = ('index.html', 'images', 'favicon.ico')
@@ -51,6 +51,8 @@ def app(args):
         print('Usage: index-generator [OPTIONS] PATH.')
         print('See: index-generator --help')
         sys.exit(0)
+    if not os.path.exists(args.path):
+        raise IndexGeneratorPathNotExists('Path does not exists')
     if args.no_recursive:
         os.chdir(args.path)
         generate_once(args.theme, '.', os.listdir('.'), args.name, args.print, base=args.root, human=args.human,
