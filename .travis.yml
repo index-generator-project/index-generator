@@ -81,4 +81,4 @@ install:
   - pip3 install -r requirements.txt
 script:
   - pytest -v --cov --cov-report xml
-  - python-codacy-coverage
+  - python-codacy-coverage || true
