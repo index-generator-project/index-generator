@@ -1,5 +1,4 @@
 .idea
-*.iml
 __pycache__
 /*.html
 /build
