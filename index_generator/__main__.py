@@ -62,7 +62,7 @@ def app(args):
         raise IndexGeneratorTemplateNotFound(str(e))
 
 
-def generate_once(theme, root, files, name, if_print, base=os.path.sep, human=False, template=''):
+def generate_once(theme, root, files, name, if_print, base=os.path.sep, human=False, template='', iconset='material'):
     if not template:
         environment = jinja2.Environment(
             loader=jinja2.PackageLoader('index_generator', 'templates/' + theme),
@@ -88,7 +88,8 @@ def generate_once(theme, root, files, name, if_print, base=os.path.sep, human=Fa
             'size': entry.size,
             'modified': time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(entry.modified)),
             'mime': entry.mime,
-            'isDir': entry.isDir
+            'isDir': entry.isDir,
+            'icon': entry.icon
         })
     html = template.render(ig={
         'root': base + root.lstrip('.*' + os.path.sep),
@@ -107,7 +108,7 @@ def generate_once(theme, root, files, name, if_print, base=os.path.sep, human=Fa
             print(html, file=f)
 
 
-def generate_recursively(theme, path, name, if_print, max_depth=0, base=os.path.sep, human=False, template=''):
+def generate_recursively(theme, path, name, if_print, max_depth=0, base=os.path.sep, human=False, template='', iconset='material'):
     os.chdir(path)
     for root, dirs, files in os.walk('.'):
         if max_depth != 0 and root.count(os.sep) >= max_depth:
@@ -124,7 +125,7 @@ def generate_recursively(theme, path, name, if_print, max_depth=0, base=os.path.
             print('files: {}'.format(files))
             print('-----------------------------------------')
 
-        generate_once(theme, root, dirs + files, name, if_print, base=base, human=human, template=template)
+        generate_once(theme, root, dirs + files, name, if_print, base=base, human=human, template=template, iconset=iconset)
 
 
 if __name__ == '__main__':
