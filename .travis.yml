@@ -37,6 +37,7 @@ matrix:
       env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
       cache:
         directories:
+          - /c/Python37
           - $HOME/AppData/Local/Temp/chocolatey
     - name: "Python 3.7 on macOS"
       stage: "Build"
