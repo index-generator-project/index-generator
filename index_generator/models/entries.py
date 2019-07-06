@@ -26,5 +26,8 @@ class Entry(object):
             self.size = os.path.getsize(path)
         self.modified = os.path.getmtime(path)
         self.isDir = os.path.isdir(path)
-        with open(os.path.dirname(__file__) + os.path.sep + '..' + os.path.sep + 'icons' + os.path.sep + iconset + os.path.sep + 'default.svg', 'rb') as f:
+        iconFile = 'file.svg'
+        if self.isDir:
+            iconFile = 'folder-cluster.svg'
+        with open(os.path.dirname(__file__) + os.path.sep + '..' + os.path.sep + 'icons' + os.path.sep + iconset + os.path.sep + iconFile, 'rb') as f:
             self.icon = base64.b64encode(f.read()).decode()
