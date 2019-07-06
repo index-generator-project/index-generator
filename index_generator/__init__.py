@@ -1,5 +1,5 @@
 APP_NAME = 'Index Generator'
-APP_VERSION = '0.2'
+APP_VERSION = '0.2.9'
 APP_URL = 'https://github.com/BruceZhang1993/index-generator'
 PACKAGE_NAME = 'index-generator'
 LICENSE = 'MIT'
