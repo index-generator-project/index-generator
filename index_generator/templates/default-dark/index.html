@@ -7,21 +7,25 @@
 {% endblock %}
 {% block files %}
 <table>
+    <col width="40">
     <col width="600">
     <col width="180">
     <col width="300">
     <tr>
+        <th align="left"></th>
         <th align="left">Filename</th>
         <th align="left">Size</th>
         <th align="left">Last modified</th>
     </tr>
     <tr>
+        <td></td>
         <td><a href="../">Parent directory/</a></td>
         <td>-</td>
         <td>-</td>
     </tr>
     {% for file in ig.files %}
     <tr>
+        <td><img src="data:image/svg+xml;base64,{{ file.icon }}" width="30" /></td>
         {% if file.isDir %}
         <td><a href="{{ file.path }}">{{ file.name }}/</a></td>
         <td>-</td>
