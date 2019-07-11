@@ -17,3 +17,4 @@ def test_entry():
     assert isinstance(entry.size, int) is True
     assert entry.isDir is False
     assert entry.name == 'CODE_OF_CONDUCT.md'
+    assert isinstance(entry.icon, str)
