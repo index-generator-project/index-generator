@@ -4,7 +4,6 @@ Yet another python index generator
 
 [![Travis](https://img.shields.io/travis/index-generator-project/index-generator.svg?style=for-the-badge)](https://travis-ci.org/index-generator-project/index-generator)
 [![GitHub top language](https://img.shields.io/github/languages/top/index-generator-project/index-generator.svg?style=for-the-badge)](https://github.com/index-generator-project/index-generator)
-[![Requires.io](https://img.shields.io/requires/github/index-generator-project/index-generator.svg?style=for-the-badge)](https://requires.io/github/index-generator-project/index-generator/requirements/?branch=master)
 [![GitHub](https://img.shields.io/github/license/index-generator-project/index-generator.svg?style=for-the-badge)](https://github.com/index-generator-project/index-generator/blob/master/LICENSE)
 [![Codacy grade](https://img.shields.io/codacy/grade/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)](https://app.codacy.com/project/index-generator-project/index-generator/dashboard)
 [![Codacy coverage](https://img.shields.io/codacy/coverage/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)](https://app.codacy.com/project/index-generator-project/index-generator/dashboard)
