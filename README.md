@@ -2,12 +2,12 @@
 
 Yet another python index generator
 
-[![Travis](https://img.shields.io/travis/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://travis-ci.org/BruceZhang1993/index-generator)
-[![GitHub top language](https://img.shields.io/github/languages/top/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://github.com/BruceZhang1993/index-generator)
-[![Requires.io](https://img.shields.io/requires/github/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://requires.io/github/BruceZhang1993/index-generator/requirements/?branch=master)
-[![GitHub](https://img.shields.io/github/license/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://github.com/BruceZhang1993/index-generator/blob/master/LICENSE)
-[![Codacy grade](https://img.shields.io/codacy/grade/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)](https://app.codacy.com/project/BruceZhang1993/index-generator/dashboard)
-[![Codacy coverage](https://img.shields.io/codacy/coverage/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)](https://app.codacy.com/project/BruceZhang1993/index-generator/dashboard)
+[![Travis](https://img.shields.io/travis/index-generator-project/index-generator.svg?style=for-the-badge)](https://travis-ci.org/index-generator-project/index-generator)
+[![GitHub top language](https://img.shields.io/github/languages/top/index-generator-project/index-generator.svg?style=for-the-badge)](https://github.com/index-generator-project/index-generator)
+[![Requires.io](https://img.shields.io/requires/github/index-generator-project/index-generator.svg?style=for-the-badge)](https://requires.io/github/index-generator-project/index-generator/requirements/?branch=master)
+[![GitHub](https://img.shields.io/github/license/index-generator-project/index-generator.svg?style=for-the-badge)](https://github.com/index-generator-project/index-generator/blob/master/LICENSE)
+[![Codacy grade](https://img.shields.io/codacy/grade/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)](https://app.codacy.com/project/index-generator-project/index-generator/dashboard)
+[![Codacy coverage](https://img.shields.io/codacy/coverage/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)](https://app.codacy.com/project/index-generator-project/index-generator/dashboard)
 
 ## Install
 
@@ -21,7 +21,7 @@ pip install index-generator
 
 ### GitHub release
 
-[![GitHub release](https://img.shields.io/github/release/BruceZhang1993/index-generator.svg?style=for-the-badge)](https://github.com/BruceZhang1993/index-generator/releases)
+[![GitHub release](https://img.shields.io/github/release/index-generator-project/index-generator.svg?style=for-the-badge)](https://github.com/index-generator-project/index-generator/releases)
 
 You can just download wheel(.whl) file, and install using `pip install`.
 
@@ -47,11 +47,11 @@ sudo pip install .
 
 ## Usage
 
-See [Wiki Page](https://github.com/BruceZhang1993/index-generator/wiki)
+See [Wiki Page](https://github.com/index-generator-project/index-generator/wiki)
 
 ## License
 
-[MIT](https://github.com/BruceZhang1993/index-generator/blob/master/LICENSE)
+[MIT](https://github.com/index-generator-project/index-generator/blob/master/LICENSE)
 
 ## Contributors
 
@@ -60,4 +60,4 @@ See [Wiki Page](https://github.com/BruceZhang1993/index-generator/wiki)
 - Bruce Zhang ([BruceZhang1993](https://github.com/BruceZhang1993))
 - Edward P ([edward-p](https://github.com/edward-p))
 
-[More...](https://github.com/BruceZhang1993/index-generator/graphs/contributors)
+[More...](https://github.com/index-generator-project/index-generator/graphs/contributors)
