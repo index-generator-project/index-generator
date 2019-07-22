@@ -58,5 +58,6 @@ See [Wiki Page](https://github.com/index-generator-project/index-generator/wiki)
 
 - Bruce Zhang ([BruceZhang1993](https://github.com/BruceZhang1993))
 - Edward P ([edward-p](https://github.com/edward-p))
+- OriginCode ([OriginCode](https://github.com/OriginCode))
 
 [More...](https://github.com/index-generator-project/index-generator/graphs/contributors)
