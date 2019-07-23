@@ -5,8 +5,8 @@ Yet another python index generator
 [![Travis](https://img.shields.io/travis/index-generator-project/index-generator.svg?style=for-the-badge)](https://travis-ci.org/index-generator-project/index-generator)
 [![GitHub top language](https://img.shields.io/github/languages/top/index-generator-project/index-generator.svg?style=for-the-badge)](https://github.com/index-generator-project/index-generator)
 [![GitHub](https://img.shields.io/github/license/index-generator-project/index-generator.svg?style=for-the-badge)](https://github.com/index-generator-project/index-generator/blob/master/LICENSE)
-[![Codacy grade](https://img.shields.io/codacy/grade/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)](https://app.codacy.com/project/index-generator-project/index-generator/dashboard)
-[![Codacy coverage](https://img.shields.io/codacy/coverage/3aef89bd80514ba0a2e353aefac47ebe.svg?style=for-the-badge)](https://app.codacy.com/project/index-generator-project/index-generator/dashboard)
+[![Codacy grade](https://img.shields.io/codacy/grade/6ee09a36f8b04bd690d23d39d355b3b9.svg?style=for-the-badge)](https://app.codacy.com/project/index-generator-project/index-generator/dashboard)
+[![Codacy coverage](https://img.shields.io/codacy/coverage/6ee09a36f8b04bd690d23d39d355b3b9.svg?style=for-the-badge)](https://app.codacy.com/project/index-generator-project/index-generator/dashboard)
 
 ## Install
 
