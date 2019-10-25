@@ -29,6 +29,7 @@ def main():
         parser.add_argument('--depth', '-d', type=int, default=0, help='Set cutoff depth.')
         parser.add_argument('--root', '-r', type=str, default=os.path.sep, help='Set base root dir.')
         parser.add_argument('--human', action='store_true', default=False, help='Make size human readable.')
+        parser.add_argument('--iconset', action='store', default='papirus', help='Choose iconset.')
         parser.add_argument('path', type=str, default='', help='Path', nargs='?')
         arguments = parser.parse_args()
         app(arguments)
@@ -54,15 +55,15 @@ def app(args):
         if args.no_recursive:
             os.chdir(args.path)
             generate_once(args.theme, '.', os.listdir('.'), args.name, args.print, base=args.root, human=args.human,
-                          template=os.path.abspath(args.template) if args.template else '')
+                          template=os.path.abspath(args.template) if args.template else '', iconset=args.iconset)
         else:
             generate_recursively(args.theme, args.path, args.name, args.print, args.depth, base=args.root, human=args.human,
-                                 template=os.path.abspath(args.template) if args.template else '')
+                                 template=os.path.abspath(args.template) if args.template else '', iconset=args.iconset)
     except TemplateNotFound as e:
         raise IndexGeneratorTemplateNotFound(str(e))
 
 
-def generate_once(theme, root, files, name, if_print, base=os.path.sep, human=False, template='', iconset='material'):
+def generate_once(theme, root, files, name, if_print, base=os.path.sep, human=False, template='', iconset='papirus'):
     if not template:
         environment = jinja2.Environment(
             loader=jinja2.PackageLoader('index_generator', 'templates/' + theme),
@@ -75,7 +76,7 @@ def generate_once(theme, root, files, name, if_print, base=os.path.sep, human=Fa
         )
     template = environment.get_template(name)
 
-    entries = list(map(lambda f1: Entry(f1, root, base=base, human=human), files))
+    entries = list(map(lambda f1: Entry(f1, root, base=base, human=human, iconset=iconset), files))
     # entries.sort(key=lambda x: x.isDir, reverse=True)
 
     filelist = []
@@ -108,7 +109,7 @@ def generate_once(theme, root, files, name, if_print, base=os.path.sep, human=Fa
             print(html, file=f)
 
 
-def generate_recursively(theme, path, name, if_print, max_depth=0, base=os.path.sep, human=False, template='', iconset='material'):
+def generate_recursively(theme, path, name, if_print, max_depth=0, base=os.path.sep, human=False, template='', iconset='papirus'):
     os.chdir(path)
     for root, dirs, files in os.walk('.'):
         if max_depth != 0 and root.count(os.sep) >= max_depth:

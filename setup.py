@@ -18,7 +18,7 @@ setup(
         'index_generator.models'
     ],
     package_data={
-        'index_generator': ['templates/*/*', 'icons/*/*']
+        'index_generator': ['templates/*/*', 'icons/*/*', 'icons/*/*/*']
     },
     include_package_data=True,
     url=APP_URL,
