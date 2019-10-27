@@ -22,8 +22,9 @@ def get_icon_by_mime(mime, iconset='papirus', isDir=False):
     else:
         valid_targets = ['default']
     for target in valid_targets:
-        if os.path.isfile(os.path.dirname(__file__) + os.path.sep + '..' + os.path.sep + 'icons' + os.path.sep + iconset + os.path.sep + target + '.svg'):
-            return base64.b64encode(open(os.path.dirname(__file__) + os.path.sep + '..' + os.path.sep + 'icons' + os.path.sep + iconset + os.path.sep + target + '.svg', 'rb').read()).decode()
+        path = os.path.dirname(__file__) + os.path.sep + '..' + os.path.sep + 'icons' + os.path.sep + iconset + os.path.sep + target + '.svg'
+        if os.path.isfile(path):
+            return base64.b64encode(open(path, 'rb').read()).decode()
 
 class Entry(object):
     def __init__(self, file, root, base=os.path.sep, human=False, iconset='papirus'):
